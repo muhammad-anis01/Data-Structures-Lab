@@ -6,7 +6,7 @@ It uses **dynamic memory allocation** (`new` and `delete[]`) to store and displa
 
 ---
 
-## ⚙️ How It Works
+## How It Works
 1. The program asks the user for the number of players.
 2. It dynamically allocates memory to store their scores.
 3. The user enters each player's score.
