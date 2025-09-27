@@ -1,4 +1,4 @@
-# Deans Attendance Tracker ✅
+# Deans Attendance Tracker 
 
 ## Description
 This is a simple **C++ program** that tracks attendance for a workshop.  

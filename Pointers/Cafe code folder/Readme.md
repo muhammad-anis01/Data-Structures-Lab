@@ -18,7 +18,7 @@ Supported items:
 
 ---
 
-## ▶️ Usage
+##  Usage
 
 ### Compile the program:
 ```bash
