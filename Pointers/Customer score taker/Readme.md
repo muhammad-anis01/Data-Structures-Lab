@@ -13,6 +13,7 @@ It uses **dynamic memory allocation** (`new` and `delete[]`) to store and displa
 4. The program displays all scores.
 5. Memory is released after use.
 
+
 ---
 
 ##  Usage
