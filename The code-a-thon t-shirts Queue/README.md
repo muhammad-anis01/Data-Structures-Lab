@@ -1,57 +1,25 @@
-# Code-a-Thon T-Shirt Queue Management System
-
-## Overview
-This is a console-based C++ application designed to manage the queue of students waiting for free T-shirts during a university "Code-a-Thon" event.  
-The program keeps track of students joining and leaving the queue dynamically and ensures that the first student to arrive is served first.
 
 ---
 
-## Features
-1. **Add Student** – Add a new student to the end of the queue by entering their name and unique ID.
-2. **Serve Student** – Serve and remove the student at the front of the queue.
-3. **Student Leaves** – Remove a student from any position in the queue by entering their unique ID.
-4. **Display Queue** – Show the list of students currently in the queue.
-5. **Count Students** – Display the total number of students waiting in the queue.
-6. **Exit** – Quit the program safely.
+## Example Output
+Enter Student Name: Ali Khan
+Enter Student ID: 123
+Ali Khan (ID: 123) has joined the queue.
+
+Enter Student Name: Sara Ahmed
+Enter Student ID: 456
+Sara Ahmed (ID: 456) has joined the queue.
+
+Current Queue:
+Name: Ali Khan | ID: 123
+Name: Sara Ahmed | ID: 456
+
+Total students in queue: 2
 
 ---
 
-## Data Stored for Each Student
-- **Student Name** (e.g., "Ali Khan")  
-- **Student ID** (e.g., 12345)
+## How to Compile and Run
 
----
-
-## Implementation Details
-- The program uses the C++ Standard Library `list` container for dynamic queue management.
-- This allows efficient insertion and removal of students from any position in the queue.
-- The program uses a simple menu-driven approach for user interaction.
-
----
-
-## Sample Menu
-========== Code-a-Thon T-Shirt Queue ==========
-
-Add Student
-
-Serve Student
-
-Student Leaves
-
-Display Queue
-
-Count Students
-
-Exit
-==============================================
-Enter your choice:
-
-
----
-
-## How to Run
-
-### 1. Compile the Program
-Use any C++ compiler (e.g., g++) to compile:
+### Step 1: Compile the Program
 ```bash
 g++ tshirt_queue.cpp -o tshirt_queue
