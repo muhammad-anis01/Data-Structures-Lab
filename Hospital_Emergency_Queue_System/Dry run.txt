@@ -1,0 +1,53 @@
+Dry run report for the hospital system:
+
+*Included functions;
+
+1. insertATtail(101)
+2. insertATtail(102)
+3. insertAThead(200) // critical patient
+4. insertATPos(150, 2)
+5. deleteFROMstart()
+6. insertATtail(300)
+
+
+*intial both head and tail are nullpt;
+
+-------------------
+
+step by step Dry-run;
+
+1: insertATtail(101)
+	List is empty and new Node has been created and the new node become both head and tail.
+	it means: head=101 , tail=101; 
+	current list = [101]; 
+
+2: insertATtail(102)
+	add one node after the 101;
+	so it looks like : tail->next = 102 ; tail->prev = 101; And tail become 102;
+	tail = 102;
+	current list ; [101]<->[102]
+
+3: insertAThead(200)
+	now we are inserting a new node at head;
+	current list : [200]<->[101]<->[102];
+
+4: insertATPos(150, 2)
+	now we are inserting the a new node in position 2;
+	current list : [200]<->[150]<->[101]<->[200];
+
+5: deleteFROMstart()
+	Now we are deleting node from the start, means we are deleting the head and making the node->next the new node;
+	current list : [150]<->[101]<->[200];
+	[150] becomes the new head;
+
+6: insertATtail(300)
+	now we are inserting a new node at the tail,so this new node that contain (300) becomes the new tail;
+	current list : [150]<->[101]<->[200]<->[300];
+	[300] becomes new tail node;
+----------------------------------------
+
+Final output of the linked list;
+
+Start se : [150]<->[101]<->[200]<->[300]<- Tail;
+
+End se : [300]<->[200]<->[101]<->[150]<- Head;
