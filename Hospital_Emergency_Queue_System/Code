@@ -1,0 +1,147 @@
+#include <iostream>
+using namespace std;
+
+struct Patient{
+	int id;
+	Patient* next;
+	Patient* prev;
+	Patient(int pID){
+		id = pID;
+		next = nullptr;
+		prev = nullptr;
+	}	
+};
+
+class EmergencyRoom{
+	private:
+		Patient* head;
+		Patient* tail;
+		
+	public:
+		EmergencyRoom (){
+			head= nullptr;
+			tail= nullptr;
+		}
+		
+		void addATfront (int id){
+			Patient* newP = new Patient(id);
+			
+			if (head == nullptr){
+				head = tail = newP;
+			}else{
+				newP->next = head;
+				head->prev = newP;
+				head = newP;
+			}
+			
+		}
+		
+		void insertATend(int id){
+			Patient* newP = new Patient(id);
+			
+			if(tail == nullptr){
+				head = tail = newP;
+			}else{
+				tail->next=newP;
+				newP->prev=tail;
+				tail=newP;
+			}	
+			
+		}
+		
+		void insertatPOS(int id, int pos){
+			if (pos <= 1 || head == nullptr){
+				addATfront(id);
+				return;
+			}
+			
+			Patient* temp = head;
+			int index = 1;
+			
+			while(temp->next != nullptr && index < pos -1){
+				temp= temp->next;
+				index++;
+			}
+			if (temp->next == nullptr){
+				insertATend(id);
+			}
+			
+			Patient* newP = new Patient(id);
+			newP->next= temp->next;
+			newP->prev= temp;
+			temp->next->prev = newP;
+			temp->next = newP;
+			
+		}	
+		
+		void deleteFROMfront(){
+			if (head == nullptr){
+				cout<<"The emergency room is empty "<<endl;
+				return;
+			}
+			
+			cout<<"removed mariz: "<< head->id<<endl;
+			Patient* temp= head;
+			
+			if (head == tail){
+				head = tail = nullptr;
+			}
+			else{
+				head= head->next;
+				head->prev= nullptr;
+			}
+			delete temp; 	
+		}
+		
+		void showFROMstart(){
+			Patient* temp = head;
+			cout<<"Start -> : ";
+			
+			while(temp != nullptr){
+				cout<<temp->id;
+				if(temp->next != nullptr){
+					cout<<"<->";
+				}
+				temp= temp->next;
+			}
+			cout<<"<-Tail\n";
+		}
+		
+		void showFROMend(){
+			Patient* temp = tail;
+			cout<<"End -> :";
+			while(temp != nullptr){
+				cout<<temp->id;
+				if (temp->prev != nullptr){
+					cout<<"<->";
+				}
+				temp= temp->prev;
+			}
+			cout<<"<-Head\n";
+		}
+};
+
+
+int main() {
+	
+	EmergencyRoom er;
+	
+	er.insertATend(101);
+	er.insertATend(102);
+	er.addATfront(200);
+	er.insertatPOS(150,2);
+	er.showFROMstart();
+	er.showFROMend();
+	cout<<endl;
+	er.deleteFROMfront();
+	er.showFROMstart();
+	
+	cout<<endl;
+	cout<<endl;
+	
+	er.addATfront(300);
+	er.showFROMstart();
+	er.showFROMend();
+	
+	return 0;
+}
