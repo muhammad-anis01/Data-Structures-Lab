@@ -1,0 +1,160 @@
+#include <iostream>
+#include <sstream>
+using namespace std;
+
+struct Node {
+    string data;
+    Node* next;
+    Node(string value) {
+        data = value;
+        next = nullptr;
+    }
+};
+
+class StringStack {
+private:
+    Node* topNode;
+
+public:
+    StringStack() {
+        topNode = nullptr;
+    }
+
+    bool isEmpty() {
+        return topNode == nullptr;
+    }
+
+    void push(string value) {
+        Node* newNode = new Node(value);
+        newNode->next = topNode;
+        topNode = newNode;
+    }
+
+    string pop() {
+        if (isEmpty()) return "";
+
+        string value = topNode->data;
+        Node* temp = topNode;
+        topNode = topNode->next;
+        delete temp;
+        return value;
+    }
+};
+
+class MusicPlayer {
+private:
+    string currentTrack;
+    StringStack history;
+
+public:
+    MusicPlayer() {
+        currentTrack = "";
+    }
+
+    void playTrack(string newTrack) {
+        if (!currentTrack.empty()) {
+            history.push(currentTrack);
+        }
+        currentTrack = newTrack;
+        cout << "Now playing: " << currentTrack << endl;
+    }
+
+    void playPrevious() {
+        if (history.isEmpty()) {
+            cout << "No previous tracks." << endl;
+        } else {
+            currentTrack = history.pop();
+            cout << "Back to: " << currentTrack << endl;
+        }
+    }
+};
+
+struct IntNode {
+    int data;
+    IntNode* next;
+    IntNode(int value) {
+        data = value;
+        next = nullptr;
+    }
+};
+
+class IntStack {
+private:
+    IntNode* topNode;
+
+public:
+    IntStack() {
+        topNode = nullptr;
+    }
+
+    bool isEmpty() {
+        return topNode == nullptr;
+    }
+
+    void push(int value) {
+        IntNode* newNode = new IntNode(value);
+        newNode->next = topNode;
+        topNode = newNode;
+    }
+
+    int pop() {
+        if (isEmpty()) return 0;
+
+        int value = topNode->data;
+        IntNode* temp = topNode;
+        topNode = topNode->next;
+        delete temp;
+        return value;
+    }
+};
+
+int evaluatePostfix(string expression) {
+    IntStack st;
+    stringstream ss(expression);
+    string token;
+
+    while (ss >> token) {
+
+        // Number
+        if (isdigit(token[0])) {
+            st.push(token[0] - '0');
+        }
+        else {
+            // Operator
+            int a = st.pop();
+            int b = st.pop();
+            int result;
+
+            if (token == "+") result = b + a;
+            else if (token == "-") result = b - a;
+            else if (token == "*") result = b * a;
+            else if (token == "/") result = b / a;
+
+            st.push(result);
+        }
+    }
+    return st.pop();
+}
+
+
+int main() {
+
+    cout << "===== Music Player Test =====" << endl;
+    MusicPlayer player;
+
+    player.playTrack("talwinder");
+    player.playTrack("o saki o saki");
+    player.playTrack("arzuan jahana");
+
+    player.playPrevious();
+    player.playPrevious();
+    player.playPrevious();
+
+    cout << "\n===== RPN Calculator Test =====" << endl;
+    cout << evaluatePostfix("5 3 +") << endl;        // 8
+    cout << evaluatePostfix("5 3 + 2 *") << endl;    // 16
+    cout << evaluatePostfix("7 4 - 3 *") << endl;    // 9
+    cout << evaluatePostfix("8 4 /") << endl;        // 2
+
+    return 0;
+}
